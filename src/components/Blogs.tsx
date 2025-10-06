@@ -19,11 +19,11 @@ export default function Blogs() {
       link: "https://medium.com/@sakuna.dewanarayana/the-future-shaped-by-artificial-intelligence-a-glimpse-into-tomorrow-987f6206090a",
     },
     {
-      image: "/images/blog2.jpg",
-      title: "blogs title here",
+      image: "/images/blog4.jpg",
+      title: "Git A to Z Team Workflow Documentation",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus sapiente quod blanditiis officiis neque architecto voluptatum totam ratione nulla itaque facere iusto perspiciatis, accusantium vel qui consequuntur eius. Tempora, facere?",
-      link: "#",
+        "This document provides a complete, step-by-step guide for using Git in a team environment, covering everything from setup to daily workflow and advanced Git commands.",
+      link: "https://medium.com/@sakuna.dewanarayana/git-a-to-z-team-workflow-documentation-4d7ed5cbd993",
     },
     {
       image: "/images/blog1.jpeg",

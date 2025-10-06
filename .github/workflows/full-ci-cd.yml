@@ -7,8 +7,12 @@ on:
     branches: [main, master]
 
 env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_IMAGE: docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+
 
 jobs:
   # ==========================================
@@ -30,6 +34,7 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm install --legacy-peer-deps
+
 
       - name: 🔍 Run ESLint
         run: npm run lint
@@ -64,36 +69,27 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: 🏷️ Generate tags
-        id: tags
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
-        run: |
-          BRANCH=${GITHUB_REF#refs/heads/}
-          SHORT_SHA=${GITHUB_SHA::7}
-          echo "image_tag=docker.io/${DOCKER_USER}/sakuna-portfolio:${BRANCH}-${SHORT_SHA}" >> $GITHUB_OUTPUT
-          echo "latest_tag=docker.io/${DOCKER_USER}/sakuna-portfolio:latest" >> $GITHUB_OUTPUT
+      - name: 📋 Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.DOCKER_IMAGE }}
+          tags: |
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: 🏗️ Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: |
-            ${{ steps.tags.outputs.latest_tag }}
-            ${{ steps.tags.outputs.image_tag }}
-          labels: |
-            org.opencontainers.image.created=${{ github.event.head_commit.timestamp }}
-            org.opencontainers.image.description=This is My Portfolio Website using Next JS
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.source=${{ github.repositoryUrl }}
-            org.opencontainers.image.title=${{ github.event.repository.name }}
-            org.opencontainers.image.url=${{ github.repositoryUrl }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache
+          cache-to: type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache,mode=max
 
       - name: ✅ Image digest
-        run: echo "🐳 Image pushed successfully!"
+        run: echo "🐳 Image pushed - ${{ steps.meta.outputs.digest }}"
 
   # ==========================================
   # Job 3: Deploy Preview (Pull Requests)
@@ -162,5 +158,5 @@ jobs:
       - name: ✅ Deployment Complete
         run: |
           echo "✅ Production deployment complete!"
-          echo "🐳 Docker: docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:latest"
+          echo "🐳 Docker: ${{ env.DOCKER_IMAGE }}:latest"
           echo "🌐 Vercel: Check dashboard for URL"

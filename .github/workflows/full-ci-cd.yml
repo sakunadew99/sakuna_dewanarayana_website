@@ -64,27 +64,34 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: 📋 Extract metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio
-          tags: |
-            type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
+      - name: 🏷️ Generate tags
+        id: tags
+        run: |
+          BRANCH=${GITHUB_REF#refs/heads/}
+          SHORT_SHA=${GITHUB_SHA::7}
+          echo "image_tag=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:${BRANCH}-${SHORT_SHA}" >> $GITHUB_OUTPUT
+          echo "latest_tag=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:latest" >> $GITHUB_OUTPUT
 
       - name: 🏗️ Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            ${{ steps.tags.outputs.latest_tag }}
+            ${{ steps.tags.outputs.image_tag }}
+          labels: |
+            org.opencontainers.image.created=${{ github.event.head_commit.timestamp }}
+            org.opencontainers.image.description=This is My Portfolio Website using Next JS
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=${{ github.repositoryUrl }}
+            org.opencontainers.image.title=${{ github.event.repository.name }}
+            org.opencontainers.image.url=${{ github.repositoryUrl }}
           cache-from: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:buildcache
           cache-to: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:buildcache,mode=max
 
       - name: ✅ Image digest
-        run: echo "🐳 Image pushed - ${{ steps.meta.outputs.digest }}"
+        run: echo "🐳 Image pushed successfully!"
 
   # ==========================================
   # Job 3: Deploy Preview (Pull Requests)

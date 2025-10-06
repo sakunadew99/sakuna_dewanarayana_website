@@ -1,0 +1,246 @@
+/* Contact.module.css */
+
+.contactSection {
+  padding: 5rem 0;
+  background-color: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #1f2937;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #109246, #0d7a38);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Image Section */
+.imageWrapper {
+  position: relative;
+  height: 24rem;
+  animation: slideInLeft 0.6s ease-out 0.2s both;
+}
+
+.imageWrapper img {
+  object-fit: contain;
+}
+
+/* Form Section */
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: slideInRight 0.6s ease-out 0.4s both;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #1f2937;
+  font-size: 1.7rem;
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #109246;
+  box-shadow: 0 0 0 3px rgba(16, 146, 70, 0.1);
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: #9ca3af;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.submitButton {
+  padding: 0.75rem 2rem;
+  background-color: #109246;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  align-self: flex-start;
+}
+
+.submitButton:hover {
+  background-color: #0d7a38;
+  transform: scale(1.05);
+}
+
+/* Popup */
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.popupContent {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 28rem;
+  width: 90%;
+}
+
+.popupMessage {
+  color: #1f2937;
+  text-align: center;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.popupButton {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #109246;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popupButton:hover {
+  background-color: #0d7a38;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.visible {
+  animation-play-state: running;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 3rem;
+  }
+
+  .contentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .formRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .contactSection {
+    background-color: #111827;
+  }
+
+  .sectionTitle {
+    color: #ffffff;
+  }
+
+  .formInput,
+  .formTextarea {
+    background-color: #1f2937;
+    border-color: #4b5563;
+    color: #ffffff;
+  }
+
+  .formInput::placeholder,
+  .formTextarea::placeholder {
+    color: #6b7280;
+  }
+
+  .popupContent {
+    background-color: #1f2937;
+  }
+
+  .popupMessage {
+    color: #ffffff;
+  }
+}

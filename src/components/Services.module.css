@@ -1,0 +1,143 @@
+/* Services.module.css */
+
+.servicesSection {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #f0fdf4 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #1f2937;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #109246, #0d7a38);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Service Card */
+.serviceCard {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.serviceCard:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.5rem);
+}
+
+.serviceIcon {
+  margin-bottom: 1rem;
+  color: #109246;
+}
+
+.serviceIcon svg {
+  font-size: 3rem;
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.serviceDescription {
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visible {
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Staggered animation delays */
+.serviceCard:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.serviceCard:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.serviceCard:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 3rem;
+  }
+
+  .servicesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .servicesSection {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #1f2937 100%);
+  }
+
+  .sectionTitle {
+    color: #ffffff;
+  }
+
+  .serviceCard {
+    background-color: #1f2937;
+  }
+
+  .serviceTitle {
+    color: #ffffff;
+  }
+
+  .serviceDescription {
+    color: #d1d5db;
+  }
+}

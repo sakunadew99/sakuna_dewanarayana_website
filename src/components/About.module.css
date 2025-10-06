@@ -1,0 +1,206 @@
+/* About.module.css */
+
+.aboutSection {
+  padding: 5rem 0;
+  background-color: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #1f2937;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #109246, #0d7a38);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Image Section */
+.imageWrapper {
+  position: relative;
+  height: 24rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: slideInLeft 0.6s ease-out 0.2s both;
+}
+
+.imageWrapper img {
+  object-fit: cover;
+}
+
+/* Content Section */
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: slideInRight 0.6s ease-out 0.4s both;
+}
+
+.contentTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.description {
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+/* Info Grid */
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.infoItem {
+  color: #374151;
+}
+
+.infoLabel {
+  font-weight: 600;
+  background: linear-gradient(135deg, #109246, #0d7a38);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.infoLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  word-break: break-all;
+}
+
+.infoLink:hover {
+  color: #109246;
+}
+
+/* Download CV Button */
+.downloadButton {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: #109246;
+  color: white;
+  border-radius: 9999px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.downloadButton:hover {
+  background-color: #0d7a38;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 3rem;
+  }
+
+  .contentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contentTitle {
+    font-size: 1.875rem;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .aboutSection {
+    background-color: #111827;
+  }
+
+  .sectionTitle {
+    color: #ffffff;
+  }
+
+  .contentTitle {
+    color: #ffffff;
+  }
+
+  .description {
+    color: #d1d5db;
+  }
+
+  .infoItem {
+    color: #d1d5db;
+  }
+}
+
+/* Animation visibility */
+.visible {
+  animation-play-state: running;
+}

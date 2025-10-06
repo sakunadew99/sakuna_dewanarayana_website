@@ -1,0 +1,237 @@
+/* Header.module.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.headerScrolled {
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.headerTransparent {
+  background-color: transparent;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Mobile Menu Button */
+.menuButton {
+  font-size: 1.5rem;
+  color: #1f2937;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: block;
+}
+
+/* Desktop Navigation */
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  color: #1f2937;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.navLink:hover {
+  color: #109246;
+}
+
+/* Theme Toggle Button */
+.themeToggle {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  background-color: #e5e7eb;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.themeToggle:hover {
+  background-color: #d1d5db;
+}
+
+.themeToggle svg {
+  font-size: 1.25rem;
+}
+
+.sunIcon {
+  color: #fbbf24;
+}
+
+.moonIcon {
+  color: #374151;
+}
+
+/* Mobile Navigation */
+.mobileMenu {
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+}
+
+.mobileMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  list-style: none;
+  margin: 0;
+}
+
+.mobileNavLink {
+  color: #1f2937;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  text-transform: capitalize;
+  font-size: 1.125rem;
+}
+
+.mobileNavLink:hover {
+  color: #109246;
+}
+
+/* Mobile Theme Toggle */
+.mobileThemeToggle {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  background-color: #e5e7eb;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .menuButton {
+    display: none;
+  }
+
+  .desktopNav {
+    display: flex;
+  }
+
+  .mobileThemeToggle {
+    display: none;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .headerScrolled {
+    background-color: #111827;
+  }
+
+  .menuButton {
+    color: #ffffff;
+  }
+
+  .navLink {
+    color: #ffffff;
+  }
+
+  .navLink:hover {
+    color: #109246;
+  }
+
+  .themeToggle {
+    background-color: #374151;
+  }
+
+  .themeToggle:hover {
+    background-color: #4b5563;
+  }
+
+  .mobileMenu {
+    background-color: #111827;
+  }
+
+  .mobileNavLink {
+    color: #ffffff;
+  }
+
+  .mobileNavLink:hover {
+    color: #109246;
+  }
+
+  .mobileThemeToggle {
+    background-color: #374151;
+  }
+}
+
+/* Dark mode class overrides */
+:global(.dark) .headerScrolled {
+  background-color: #111827;
+}
+
+:global(.dark) .menuButton {
+  color: #ffffff;
+}
+
+:global(.dark) .navLink {
+  color: #ffffff;
+}
+
+:global(.dark) .themeToggle {
+  background-color: #374151;
+}
+
+:global(.dark) .themeToggle:hover {
+  background-color: #4b5563;
+}
+
+:global(.dark) .mobileMenu {
+  background-color: #111827;
+}
+
+:global(.dark) .mobileNavLink {
+  color: #ffffff;
+}
+
+:global(.dark) .mobileThemeToggle {
+  background-color: #374151;
+}

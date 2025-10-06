@@ -1,0 +1,146 @@
+/* Hero.module.css */
+
+.heroSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #f0fdf4 100%);
+  padding-top: 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.profileImageWrapper {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1rem solid #109246;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.5s ease-out 0.2s both;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: #1f2937;
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #109246, #0d7a38);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.typingWrapper {
+  font-size: 1.25rem;
+  color: #4b5563;
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.typingText {
+  font-weight: 600;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: #109246;
+  color: white;
+  border-radius: 9999px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease-out 0.8s both;
+}
+
+.ctaButton:hover {
+  background-color: #0d7a38;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .profileImageWrapper {
+    width: 16rem;
+    height: 16rem;
+  }
+
+  .title {
+    font-size: 3.75rem;
+  }
+
+  .typingWrapper {
+    font-size: 1.5rem;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .heroSection {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%);
+  }
+
+  .title {
+    color: #ffffff;
+  }
+
+  .typingWrapper {
+    color: #d1d5db;
+  }
+}

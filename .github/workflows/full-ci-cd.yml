@@ -7,12 +7,8 @@ on:
     branches: [main, master]
 
 env:
-  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-  DOCKER_IMAGE: docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-
 
 jobs:
   # ==========================================
@@ -34,7 +30,6 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm install --legacy-peer-deps
-
 
       - name: 🔍 Run ESLint
         run: npm run lint
@@ -73,7 +68,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_IMAGE }}
+          images: docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio
           tags: |
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
@@ -85,8 +80,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache
-          cache-to: type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache,mode=max
+          cache-from: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:buildcache
+          cache-to: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:buildcache,mode=max
 
       - name: ✅ Image digest
         run: echo "🐳 Image pushed - ${{ steps.meta.outputs.digest }}"
@@ -158,5 +153,5 @@ jobs:
       - name: ✅ Deployment Complete
         run: |
           echo "✅ Production deployment complete!"
-          echo "🐳 Docker: ${{ env.DOCKER_IMAGE }}:latest"
+          echo "🐳 Docker: docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:latest"
           echo "🌐 Vercel: Check dashboard for URL"

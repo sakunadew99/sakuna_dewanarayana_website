@@ -66,11 +66,13 @@ jobs:
 
       - name: 🏷️ Generate tags
         id: tags
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
         run: |
           BRANCH=${GITHUB_REF#refs/heads/}
           SHORT_SHA=${GITHUB_SHA::7}
-          echo "image_tag=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:${BRANCH}-${SHORT_SHA}" >> $GITHUB_OUTPUT
-          echo "latest_tag=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:latest" >> $GITHUB_OUTPUT
+          echo "image_tag=docker.io/${DOCKER_USER}/sakuna-portfolio:${BRANCH}-${SHORT_SHA}" >> $GITHUB_OUTPUT
+          echo "latest_tag=docker.io/${DOCKER_USER}/sakuna-portfolio:latest" >> $GITHUB_OUTPUT
 
       - name: 🏗️ Build and push
         uses: docker/build-push-action@v5
@@ -87,8 +89,8 @@ jobs:
             org.opencontainers.image.source=${{ github.repositoryUrl }}
             org.opencontainers.image.title=${{ github.event.repository.name }}
             org.opencontainers.image.url=${{ github.repositoryUrl }}
-          cache-from: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:buildcache
-          cache-to: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio:buildcache,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: ✅ Image digest
         run: echo "🐳 Image pushed successfully!"

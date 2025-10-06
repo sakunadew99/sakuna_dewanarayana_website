@@ -7,9 +7,10 @@ on:
     branches: [main, master]
 
 env:
-  DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio
+  DOCKER_IMAGE: docker.io/${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 
 jobs:
   # ==========================================

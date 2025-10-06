@@ -40,11 +40,12 @@ jobs:
       - name: Build and Push Docker image
         run: |
           docker buildx build \
-            --cache-from type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache \
-            --cache-to type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache,mode=max \
-            --tag ${{ env.DOCKER_IMAGE }}:latest \
-            --tag ${{ env.DOCKER_IMAGE }}:${{ github.sha }} \
-            --push .
+             --cache-from type=registry,ref=docker.io/username/sakuna-portfolio:buildcache \
+  --cache-to type=registry,ref=docker.io/username/sakuna-portfolio:buildcache,mode=max \
+  --tag docker.io/username/sakuna-portfolio:latest \
+  --tag docker.io/username/sakuna-portfolio:a85a26a2ba4fe41a2ba4094979d26c7eda3dfc50 \
+  --push \
+  .
 
       # ---------- DEPLOY TO VERCEL ----------
       - name: Deploy to Vercel

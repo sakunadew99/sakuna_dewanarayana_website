@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import styles from "./Portfolio.module.css";
@@ -9,6 +10,20 @@ export default function Portfolio() {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 10 - 5,
+        y: (e.clientY / window.innerHeight) * 10 - 5,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const projects = [
     {
@@ -45,22 +60,80 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className={styles.portfolioSection} ref={ref}>
+      {/* Animated Background Elements */}
+      <div className={styles.bgGradient}></div>
+      <div 
+        className={styles.floatingOrb1}
+        style={{
+          transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+        }}
+      ></div>
+      <div 
+        className={styles.floatingOrb2}
+        style={{
+          transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
+        }}
+      ></div>
+      <div className={styles.gridPattern}></div>
+
       <div className={styles.container}>
-        <h2 className={`${styles.sectionTitle} ${inView ? styles.visible : ''}`}>
-          <span className={styles.gradientText}>my</span> portfolio
-        </h2>
+        <div className={styles.headerWrapper}>
+          <div className={styles.sectionBadge}>
+            <span className={styles.badgeDot}></span>
+            Recent Projects
+          </div>
+          <h2 className={`${styles.sectionTitle} ${inView ? styles.visible : ''}`}>
+            My <span className={styles.gradientText}>Portfolio</span>
+          </h2>
+          <p className={styles.sectionSubtitle}>
+            Showcasing my latest work and creative solutions
+          </p>
+        </div>
 
         <div className={styles.projectsGrid}>
           {projects.map((project, index) => (
-            <div key={index} className={`${styles.projectCard} ${inView ? styles.visible : ''}`}>
+            <div 
+              key={index} 
+              className={`${styles.projectCard} ${inView ? styles.visible : ''}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className={styles.projectGlow}></div>
               <div className={styles.projectImageWrapper}>
-                <Image src={project.image} alt={project.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                <Image 
+                  src={project.image} 
+                  alt={project.title} 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.projectImage}
+                />
+                <div className={styles.projectShine}></div>
               </div>
 
               <div className={styles.projectOverlay}>
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
-                  learn more
-                </a>
+                <div className={styles.projectContent}>
+                  <h3 className={styles.projectTitle}>{project.title}</h3>
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={styles.projectLink}
+                  >
+                    <span>View Project</span>
+                    <svg 
+                      className={styles.linkIcon} 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                      />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           ))}

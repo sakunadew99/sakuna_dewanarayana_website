@@ -16,3 +16,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Gradient color utilities for inline styles */
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.from-emerald-500 {
+  --tw-gradient-from: #10b981;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(16, 185, 129, 0));
+}
+
+.to-teal-500 {
+  --tw-gradient-to: #14b8a6;
+}
+
+.from-cyan-500 {
+  --tw-gradient-from: #06b6d4;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(6, 182, 212, 0));
+}
+
+.to-blue-500 {
+  --tw-gradient-to: #3b82f6;
+}
+
+.from-violet-500 {
+  --tw-gradient-from: #8b5cf6;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(139, 92, 246, 0));
+}
+
+.to-purple-500 {
+  --tw-gradient-to: #a855f7;
+}

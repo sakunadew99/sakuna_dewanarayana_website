@@ -1,47 +1,332 @@
-/* Footer.module.css */
-
+/* Footer */
 .footer {
-  padding: 1.5rem 0;
-  background-color: #f3f4f6;
-  border-top: 1px solid #e5e7eb;
+  position: relative;
+  padding: 3rem 0 2rem;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+  border-top: 1px solid rgba(16, 185, 129, 0.1);
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
 }
 
 .container {
+  position: relative;
+  z-index: 10;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
+/* Social Section */
+.socialSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  text-decoration: none;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.socialLink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+.socialLink:hover::before {
+  opacity: 1;
+}
+
+.socialLink:hover {
+  transform: translateY(-6px) rotate(5deg) scale(1.1);
+  box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+  border-color: transparent;
+}
+
+.socialIcon {
+  position: relative;
+  z-index: 10;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover .socialIcon {
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Divider */
+.divider {
+  width: 100%;
+  max-width: 400px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+  animation: expandWidth 0.8s ease-out 0.3s both;
+}
+
+/* Footer Text */
 .footerText {
   color: #4b5563;
   font-size: 1rem;
   line-height: 1.5;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.heartIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: #ef4444;
+  animation: heartbeat 1.5s ease-in-out infinite;
 }
 
 .gradientText {
-  background: linear-gradient(135deg, #109246, #0d7a38);
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 600;
+  font-weight: 700;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background-color: #1f2937;
-    border-top-color: #374151;
-  }
+.gradientText:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
 
-  .footerText {
-    color: #d1d5db;
+.copyright {
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-align: center;
+  animation: fadeIn 0.8s ease-out 0.5s both;
+}
+
+/* Scroll to Top Button */
+.scrollTopButton {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 
+    0 10px 15px -3px rgba(16, 185, 129, 0.3),
+    0 0 0 1px rgba(16, 185, 129, 0.1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 100;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+  overflow: hidden;
+}
+
+.scrollTopButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+.scrollTopButton:hover::before {
+  opacity: 1;
+}
+
+.scrollTopButton:hover {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 
+    0 20px 25px -5px rgba(16, 185, 129, 0.4),
+    0 0 0 1px rgba(16, 185, 129, 0.2);
+}
+
+.arrowIcon {
+  position: relative;
+  z-index: 10;
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.scrollTopButton:hover .arrowIcon {
+  animation: bounceUp 0.6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceUp {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
   }
 }
 
 /* Responsive Design */
 @media (max-width: 640px) {
+  .footer {
+    padding: 2rem 0 1.5rem;
+  }
+
   .footerText {
     font-size: 0.875rem;
   }
+
+  .copyright {
+    font-size: 0.75rem;
+  }
+
+  .socialLink {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .socialIcon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .scrollTopButton {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .arrowIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 4rem 0 2.5rem;
+  }
+
+  .footerText {
+    font-size: 1.0625rem;
+  }
+}
+
+/* Dark Mode */
+:global(.dark) .footer {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  border-top-color: rgba(16, 185, 129, 0.2);
+}
+
+:global(.dark) .footer::before {
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+}
+
+:global(.dark) .footerText {
+  color: #94a3b8;
+}
+
+:global(.dark) .copyright {
+  color: #64748b;
+}
+
+:global(.dark) .socialLink {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+:global(.dark) .socialLink:hover {
+  border-color: transparent;
+}
+
+:global(.dark) .divider {
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.4), transparent);
 }

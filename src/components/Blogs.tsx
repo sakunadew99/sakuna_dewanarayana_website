@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import styles from "./Blogs.module.css";
@@ -9,6 +10,20 @@ export default function Blogs() {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 10 - 5,
+        y: (e.clientY / window.innerHeight) * 10 - 5,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const blogs = [
     {
@@ -36,23 +51,79 @@ export default function Blogs() {
 
   return (
     <section id="blogs" className={styles.blogsSection} ref={ref}>
+      {/* Animated Background Elements */}
+      <div className={styles.bgGradient}></div>
+      <div 
+        className={styles.floatingOrb1}
+        style={{
+          transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+        }}
+      ></div>
+      <div 
+        className={styles.floatingOrb2}
+        style={{
+          transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
+        }}
+      ></div>
+      <div className={styles.gridPattern}></div>
+
       <div className={styles.container}>
-        <h2 className={`${styles.sectionTitle} ${inView ? styles.visible : ''}`}>
-          <span className={styles.gradientText}>my</span> blogs
-        </h2>
+        <div className={styles.headerWrapper}>
+          <div className={styles.sectionBadge}>
+            <span className={styles.badgeDot}></span>
+            Latest Articles
+          </div>
+          <h2 className={`${styles.sectionTitle} ${inView ? styles.visible : ''}`}>
+            My <span className={styles.gradientText}>Blogs</span>
+          </h2>
+          <p className={styles.sectionSubtitle}>
+            Thoughts, insights, and stories from my journey
+          </p>
+        </div>
 
         <div className={styles.blogsGrid}>
           {blogs.map((blog, index) => (
-            <div key={index} className={`${styles.blogCard} ${inView ? styles.visible : ''}`}>
+            <div 
+              key={index} 
+              className={`${styles.blogCard} ${inView ? styles.visible : ''}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className={styles.blogGlow}></div>
               <div className={styles.blogImageWrapper}>
-                <Image src={blog.image} alt={blog.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                <Image 
+                  src={blog.image} 
+                  alt={blog.title} 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.blogImage}
+                />
+                <div className={styles.blogShine}></div>
+                <div className={styles.imageOverlay}></div>
               </div>
 
               <div className={styles.blogContent}>
                 <h3 className={styles.blogTitle}>{blog.title}</h3>
                 <p className={styles.blogDescription}>{blog.description}</p>
-                <a href={blog.link} target="_blank" rel="noopener noreferrer" className={styles.blogLink}>
-                  learn more
+                <a 
+                  href={blog.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={styles.blogLink}
+                >
+                  <span>Read Article</span>
+                  <svg 
+                    className={styles.linkIcon} 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                    />
+                  </svg>
                 </a>
               </div>
             </div>

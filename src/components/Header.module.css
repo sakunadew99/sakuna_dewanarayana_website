@@ -1,143 +1,372 @@
-/* Header.module.css */
-
+/* Header Styles */
 .header {
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   z-index: 50;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .headerScrolled {
-  background-color: #ffffff;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
 }
 
 .headerTransparent {
   background-color: transparent;
 }
 
+/* Navigation */
 .nav {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0 1.5rem;
 }
 
-/* Mobile Menu Button */
-.menuButton {
-  font-size: 1.5rem;
-  color: #1f2937;
-  background: none;
-  border: none;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+}
+
+/* Logo */
+.logo {
+  flex-shrink: 0;
   cursor: pointer;
-  padding: 0.5rem;
-  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #10b981, #14b8a6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+.headerScrolled .logoText {
+  transform: scale(1);
+}
+
+.headerTransparent .logoText {
+  transform: scale(1.1);
 }
 
 /* Desktop Navigation */
 .desktopNav {
   display: none;
   align-items: center;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .desktopNav {
+    display: flex;
+  }
 }
 
 .navLink {
-  color: #1f2937;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  text-transform: capitalize;
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  font-size: 2rem;
+  color: #374151;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .navLink:hover {
-  color: #109246;
+  color: #111827;
 }
 
-/* Theme Toggle Button */
-.themeToggle {
-  padding: 0.5rem;
-  border-radius: 9999px;
-  background-color: #e5e7eb;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.navLinkText {
+  position: relative;
+  z-index: 10;
+}
+
+.navLinkBg {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navLink:hover .navLinkBg,
+.navLinkActive .navLinkBg {
+  opacity: 1;
+}
+
+.navLinkUnderline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #10b981, #06b6d4);
+  transition: width 0.3s ease;
+}
+
+.navLink:hover .navLinkUnderline,
+.navLinkActive .navLinkUnderline {
+  width: 100%;
+}
+
+/* Actions */
+.actions {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 1rem;
+}
+
+/* Theme Toggle */
+.themeToggle {
+  position: relative;
+  padding: 0.625rem;
+  border-radius: 0.75rem;
+  background-color: #f3f4f6;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
 .themeToggle:hover {
-  background-color: #d1d5db;
-}
-
-.themeToggle svg {
-  font-size: 1.25rem;
-}
-
-.sunIcon {
-  color: #fbbf24;
-}
-
-.moonIcon {
-  color: #374151;
-}
-
-/* Mobile Navigation */
-.mobileMenu {
-  position: fixed;
-  top: 4rem;
-  left: 0;
-  width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  animation: slideDown 0.3s ease-out;
-}
-
-.mobileMenuList {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  list-style: none;
-  margin: 0;
-}
-
-.mobileNavLink {
-  color: #1f2937;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  text-transform: capitalize;
-  font-size: 1.125rem;
-}
-
-.mobileNavLink:hover {
-  color: #109246;
-}
-
-/* Mobile Theme Toggle */
-.mobileThemeToggle {
-  padding: 0.5rem;
-  border-radius: 9999px;
   background-color: #e5e7eb;
-  border: none;
-  cursor: pointer;
+}
+
+.themeIconWrapper {
+  position: relative;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.sunIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #f59e0b;
+  transition: transform 0.5s ease;
+}
+
+.themeToggle:hover .sunIcon {
+  transform: rotate(180deg);
+}
+
+.moonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #4f46e5;
+  transition: transform 0.5s ease;
+}
+
+.themeToggle:hover .moonIcon {
+  transform: rotate(-12deg);
+}
+
+.themeToggleBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(251, 191, 36, 0.2), rgba(249, 115, 22, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.themeToggle:hover .themeToggleBg {
+  opacity: 1;
+}
+
+/* CTA Button */
+.ctaButton {
+  display: none;
+  position: relative;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .ctaButton {
+    display: block;
+  }
+}
+
+.ctaButton:hover {
+  transform: scale(1.05);
+}
+
+.ctaButtonText {
+  position: relative;
+  z-index: 10;
+}
+
+.ctaButtonBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #10b981, #14b8a6, #06b6d4);
+  transition: transform 0.3s ease;
+}
+
+.ctaButtonBgHover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #059669, #0d9488, #0891b2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ctaButton:hover .ctaButtonBgHover {
+  opacity: 1;
+}
+
+/* Mobile Menu Button */
+.mobileMenuButton {
+  display: block;
+  padding: 0.625rem;
+  border-radius: 0.75rem;
+  background-color: #f3f4f6;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .mobileMenuButton {
+    display: none;
+  }
+}
+
+.mobileMenuButton:hover {
+  background-color: #e5e7eb;
+}
+
+.menuIcon,
+.menuIconClose {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #111827;
+  transition: transform 0.3s ease;
+}
+
+.menuIconClose {
+  transform: rotate(90deg);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .mobileMenu {
+    display: none;
+  }
+}
+
+.mobileMenuOpen {
+  max-height: 24rem;
+  opacity: 1;
+}
+
+.mobileMenuClosed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.mobileMenuContent {
+  padding: 1.5rem 0;
+  margin: 1rem 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.mobileNavLink {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.mobileNavLink:hover {
+  color: #111827;
+  background-color: rgba(243, 244, 246, 0.5);
+  transform: translateX(0.5rem);
+}
+
+.mobileNavLinkActive {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.mobileNavLinkContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chevronIcon {
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.5;
+  transform: rotate(-90deg);
+}
+
+.mobileCta {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, #10b981, #14b8a6, #06b6d4);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+}
+
+.mobileCta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.5);
+}
+
 /* Animations */
-@keyframes slideDown {
+@keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
@@ -145,93 +374,56 @@
   }
 }
 
-/* Responsive Design */
-@media (min-width: 768px) {
-  .menuButton {
-    display: none;
-  }
-
-  .desktopNav {
-    display: flex;
-  }
-
-  .mobileThemeToggle {
-    display: none;
-  }
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .headerScrolled {
-    background-color: #111827;
-  }
-
-  .menuButton {
-    color: #ffffff;
-  }
-
-  .navLink {
-    color: #ffffff;
-  }
-
-  .navLink:hover {
-    color: #109246;
-  }
-
-  .themeToggle {
-    background-color: #374151;
-  }
-
-  .themeToggle:hover {
-    background-color: #4b5563;
-  }
-
-  .mobileMenu {
-    background-color: #111827;
-  }
-
-  .mobileNavLink {
-    color: #ffffff;
-  }
-
-  .mobileNavLink:hover {
-    color: #109246;
-  }
-
-  .mobileThemeToggle {
-    background-color: #374151;
-  }
-}
-
-/* Dark mode class overrides */
+/* Dark Mode Styles */
 :global(.dark) .headerScrolled {
-  background-color: #111827;
-}
-
-:global(.dark) .menuButton {
-  color: #ffffff;
+  background-color: rgba(17, 24, 39, 0.95);
+  border-bottom-color: rgba(55, 65, 81, 0.5);
 }
 
 :global(.dark) .navLink {
+  color: #d1d5db;
+}
+
+:global(.dark) .navLink:hover {
   color: #ffffff;
 }
 
 :global(.dark) .themeToggle {
-  background-color: #374151;
+  background-color: #1f2937;
 }
 
 :global(.dark) .themeToggle:hover {
-  background-color: #4b5563;
+  background-color: #374151;
 }
 
-:global(.dark) .mobileMenu {
-  background-color: #111827;
+:global(.dark) .mobileMenuButton {
+  background-color: #1f2937;
+  color: white;
 }
 
-:global(.dark) .mobileNavLink {
+:global(.dark) .mobileMenuButton:hover {
+  background-color: #374151;
+}
+
+:global(.dark) .menuIcon,
+:global(.dark) .menuIconClose {
   color: #ffffff;
 }
 
-:global(.dark) .mobileThemeToggle {
-  background-color: #374151;
+:global(.dark) .mobileMenuContent {
+  background-color: rgba(17, 24, 39, 0.5);
+}
+
+:global(.dark) .mobileNavLink {
+  color: #d1d5db;
+}
+
+:global(.dark) .mobileNavLink:hover {
+  color: #ffffff;
+  background-color: rgba(31, 41, 55, 0.5);
+}
+
+:global(.dark) .mobileNavLinkActive {
+  background-color: rgba(31, 41, 55, 0.8);
+  color: #ffffff;
 }

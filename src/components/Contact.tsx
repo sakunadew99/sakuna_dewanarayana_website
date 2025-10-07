@@ -95,13 +95,13 @@ export default function Contact() {
         <div className={styles.headerWrapper}>
           <div className={styles.sectionBadge}>
             <span className={styles.badgeDot}></span>
-            Let's Connect
+            Let&apos;s Connect
           </div>
           <h2 className={`${styles.sectionTitle} ${inView ? styles.visible : ""}`}>
             Contact <span className={styles.gradientText}>Me</span>
           </h2>
           <p className={styles.sectionSubtitle}>
-            Have a project in mind? Let's work together
+            Have a project in mind? Let&apos;s work together
           </p>
         </div>
 

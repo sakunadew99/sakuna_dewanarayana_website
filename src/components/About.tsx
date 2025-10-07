@@ -62,12 +62,12 @@ export default function About() {
               <span className={styles.badge}>Full Stack Developer</span>
               <span className={styles.badge}>Backend Developer</span>
               <h3 className={styles.contentTitle}>
-                Hi, I'm <span className={styles.gradientText}>Sakuna Dewanarayana</span>
+                Hi, I&apos;m <span className={styles.gradientText}>Sakuna Dewanarayana</span>
               </h3>
 
               <p className={styles.description}>
-                I'm a passionate full-stack developer who thrives on building seamless web
-                applications. Whether it's designing user-friendly interfaces with React.js or
+                I&apos;m a passionate full-stack developer who thrives on building seamless web
+                applications. Whether it&apos;s designing user-friendly interfaces with React.js or
                 crafting robust back-end logic with Node.js and Spring Boot, I enjoy tackling all
                 aspects of the development journey. My toolbox also includes the classics: HTML, CSS,
                 JavaScript, and Java.

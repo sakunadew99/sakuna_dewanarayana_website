@@ -63,7 +63,7 @@ export default function Hero() {
 
           {/* Greeting Text */}
           <div className={styles.greeting}>
-            <span className={styles.wave}>👋</span> Hello, I'm
+            <span className={styles.wave}>👋</span> I&apos;m
           </div>
 
           {/* Name with Enhanced Styling */}
@@ -101,7 +101,7 @@ export default function Hero() {
           {/* CTA Buttons */}
           <div className={styles.ctaGroup}>
             <a href="#contact" className={styles.ctaButtonPrimary}>
-              <span>Let's Talk</span>
+              <span>Let&apos;s Talk</span>
               <Mail className={styles.buttonIcon} />
             </a>
             <a href="#portfolio" className={styles.ctaButtonSecondary}>

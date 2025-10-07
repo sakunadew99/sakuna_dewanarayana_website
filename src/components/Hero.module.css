@@ -316,6 +316,7 @@
   display: flex;
   gap: 1rem;
   animation: fadeIn 0.8s ease-out 0.9s both;
+  margin-bottom: 10px;
 }
 
 .socialLink {

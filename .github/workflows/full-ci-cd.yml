@@ -8,7 +8,7 @@ on:
 
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-  DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/sakuna-portfolio
+  DOCKER_IMAGE_NAME: sakuna-portfolio
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
@@ -70,7 +70,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: docker.io/${{ env.DOCKER_IMAGE }}
+          images: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
           tags: |
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
@@ -82,8 +82,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=docker.io/${{ env.DOCKER_IMAGE }}:buildcache
-          cache-to: type=registry,ref=docker.io/${{ env.DOCKER_IMAGE }}:buildcache,mode=max
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache,mode=max
 
       - name: ✅ Image digest
         run: echo "🐳 Image pushed - ${{ steps.meta.outputs.digest }}"
@@ -155,5 +155,5 @@ jobs:
       - name: ✅ Deployment Complete
         run: |
           echo "✅ Production deployment complete!"
-          echo "🐳 Docker: docker.io/${{ env.DOCKER_IMAGE }}:latest"
+          echo "🐳 Docker: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest"
           echo "🌐 Vercel: Check dashboard for URL"

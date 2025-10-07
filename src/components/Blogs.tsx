@@ -69,10 +69,11 @@ export default function Blogs() {
 
       <div className={styles.container}>
         <div className={styles.headerWrapper}>
+          {/* Services Grid 
           <div className={styles.sectionBadge}>
             <span className={styles.badgeDot}></span>
             Latest Articles
-          </div>
+          </div>*/}
           <h2 className={`${styles.sectionTitle} ${inView ? styles.visible : ''}`}>
             My <span className={styles.gradientText}>Blogs</span>
           </h2>

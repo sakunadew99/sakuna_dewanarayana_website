@@ -6,9 +6,14 @@ import styles from "./Header.module.css";
 
 export default function ModernHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true); // Default to dark mode
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  // Set dark mode on initial load
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,13 +51,15 @@ export default function ModernHeader() {
     >
       <nav className={styles.nav}>
         <div className={styles.container}>
-          {/* Logo 
+          {/* Logo - Commented out as per original */}
+          {/* 
           <div className={styles.logo}>
             <div className={styles.logoText}>
               Portfolio
             </div>
           </div>
-*/}
+          */}
+
           {/* Desktop Navigation */}
           <div className={styles.desktopNav}>
             {navLinks.map((link, index) => (

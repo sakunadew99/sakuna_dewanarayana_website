@@ -59,8 +59,10 @@ export default function About() {
           {/* Content Section */}
           <div className={`${styles.contentWrapper} ${inView ? styles.visible : ""}`}>
             <div className={styles.introSection}>
-              <span className={styles.badge}>Full Stack Developer</span>
-              <span className={styles.badge}>Backend Developer</span>
+              <div className={styles.badgeContainer}>
+                <span className={styles.badge}>Full Stack Developer</span>
+                <span className={styles.badge}>Backend Developer</span>
+              </div>
               <h3 className={styles.contentTitle}>
                 Hi, I&apos;m <span className={styles.gradientText}>Sakuna Dewanarayana</span>
               </h3>

@@ -66,27 +66,39 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: 📋 Extract metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
-          tags: |
-            type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
+      - name: 🏷️ Generate tags
+        id: tags
+        run: |
+          DOCKER_IMAGE="${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}"
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})
+          
+          echo "image=${DOCKER_IMAGE}" >> $GITHUB_OUTPUT
+          echo "tag_latest=${DOCKER_IMAGE}:latest" >> $GITHUB_OUTPUT
+          echo "tag_sha=${DOCKER_IMAGE}:${BRANCH_NAME}-${SHORT_SHA}" >> $GITHUB_OUTPUT
+          echo "cache_ref=${DOCKER_IMAGE}:buildcache" >> $GITHUB_OUTPUT
 
       - name: 🏗️ Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache,mode=max
+          tags: |
+            ${{ steps.tags.outputs.tag_latest }}
+            ${{ steps.tags.outputs.tag_sha }}
+          labels: |
+            org.opencontainers.image.created=${{ github.event.head_commit.timestamp }}
+            org.opencontainers.image.source=${{ github.repositoryUrl }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=registry,ref=${{ steps.tags.outputs.cache_ref }}
+          cache-to: type=registry,ref=${{ steps.tags.outputs.cache_ref }},mode=max
 
       - name: ✅ Image digest
-        run: echo "🐳 Image pushed - ${{ steps.meta.outputs.digest }}"
+        run: |
+          echo "🐳 Image pushed successfully!"
+          echo "📦 Tags:"
+          echo "  - ${{ steps.tags.outputs.tag_latest }}"
+          echo "  - ${{ steps.tags.outputs.tag_sha }}"
 
   # ==========================================
   # Job 3: Deploy Preview (Pull Requests)

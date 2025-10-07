@@ -6,10 +6,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SD CREATION - Sakuna Dewanarayana",
+  title: "Sakuna Dewanarayana",
   description: "Full-stack developer portfolio showcasing web development projects and services",
   icons: {
-    icon: "/images/favicon.ico",
+    icon: "/images/favicon.gif",
   },
 };
 

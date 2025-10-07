@@ -89,8 +89,8 @@
 
 .profileImageWrapper {
   position: relative;
-  width: 14rem;
-  height: 14rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
   overflow: hidden;
   background: linear-gradient(135deg, #10b981, #06b6d4);

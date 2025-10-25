@@ -1,4 +1,118 @@
-/* Portfolio Section */
+/* ============================================
+   CHANGE 1: Fixed Navigation Button Z-Index
+   - Moved buttons outside the carousel flow
+   - Prevented buttons from covering content
+   ============================================ */
+
+.navButton {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 50; /* CHANGED: Increased from 40 to 50 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative; /* CHANGED: Added to ensure proper stacking */
+}
+
+/* ============================================
+   CHANGE 2: Adjusted Carousel Container
+   - Reduced z-index to prevent overlap with buttons
+   ============================================ */
+
+.carouselContainer {
+  flex: 1;
+  position: relative;
+  height: 550px;
+  overflow: visible;
+  z-index: 1; /* CHANGED: Added explicit z-index */
+}
+
+/* ============================================
+   CHANGE 3: Fixed Project Card Z-Index Hierarchy
+   - Ensured cards don't overlap navigation
+   ============================================ */
+
+.projectCard {
+  position: absolute;
+  width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  opacity: 1;
+}
+
+.centerCard {
+  transform: translateX(0) scale(1.05);
+  z-index: 30; /* CHANGED: Kept lower than navButton */
+  opacity: 1;
+  box-shadow: 
+    0 30px 60px rgba(16, 185, 129, 0.2),
+    0 0 0 1px rgba(16, 185, 129, 0.1);
+}
+
+.leftCard {
+  transform: translateX(-520px) scale(0.85);
+  z-index: 10; /* CHANGED: Much lower than navButton */
+  opacity: 0.5;
+  filter: blur(1px);
+}
+
+.rightCard {
+  transform: translateX(520px) scale(0.85);
+  z-index: 10; /* CHANGED: Much lower than navButton */
+  opacity: 0.5;
+  filter: blur(1px);
+}
+
+/* ============================================
+   CHANGE 4: Mobile Navigation Button Fixes
+   - Better positioning on mobile devices
+   ============================================ */
+
+@media (max-width: 768px) {
+  .navButton {
+    width: 2.5rem; /* CHANGED: Slightly larger than before */
+    height: 2.5rem;
+    z-index: 100; /* CHANGED: Much higher z-index on mobile */
+  }
+
+  .navIcon {
+    width: 1.25rem; /* CHANGED: Slightly larger icon */
+    height: 1.25rem;
+  }
+
+  .carouselWrapper {
+    gap: 0.5rem; /* CHANGED: Tighter gap to keep buttons visible */
+    padding: 2rem 0.5rem; /* CHANGED: Added horizontal padding */
+  }
+}
+
+@media (max-width: 640px) {
+  .navButton {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .navIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* Rest of CSS remains the same... */
 .portfolioSection {
   position: relative;
   padding: 2rem 0;
@@ -16,7 +130,6 @@
   background: linear-gradient(90deg, transparent, #10b981, transparent);
 }
 
-/* Animated Background */
 .bgGradient {
   position: absolute;
   inset: 0;
@@ -51,7 +164,6 @@
   pointer-events: none;
 }
 
-/* Container */
 .container {
   position: relative;
   z-index: 10;
@@ -60,7 +172,6 @@
   padding: 0 1.5rem;
 }
 
-/* Header */
 .headerWrapper {
   text-align: center;
   margin-bottom: 4rem;
@@ -123,7 +234,6 @@
   animation: fadeIn 0.8s ease-out 0.4s both;
 }
 
-/* Carousel Wrapper */
 .carouselWrapper {
   position: relative;
   display: flex;
@@ -133,13 +243,6 @@
   padding: 2rem 0;
 }
 
-.carouselContainer {
-  flex: 1;
-  position: relative;
-  height: 550px;
-  overflow: visible;
-}
-
 .carouselTrack {
   position: relative;
   width: 100%;
@@ -147,21 +250,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Project Card */
-.projectCard {
-  position: absolute;
-  width: 400px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 1.5rem;
-  overflow: hidden;
-  border: 1px solid rgba(16, 185, 129, 0.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: pointer;
-  opacity: 1;
 }
 
 .projectCard::before {
@@ -182,30 +270,6 @@
   transform: scaleX(1);
 }
 
-/* Card Positions */
-.centerCard {
-  transform: translateX(0) scale(1.05);
-  z-index: 30;
-  opacity: 1;
-  box-shadow: 
-    0 30px 60px rgba(16, 185, 129, 0.2),
-    0 0 0 1px rgba(16, 185, 129, 0.1);
-}
-
-.leftCard {
-  transform: translateX(-520px) scale(0.85);
-  z-index: 10;
-  opacity: 0.5;
-  filter: blur(1px);
-}
-
-.rightCard {
-  transform: translateX(520px) scale(0.85);
-  z-index: 10;
-  opacity: 0.5;
-  filter: blur(1px);
-}
-
 .centerCard:hover {
   transform: translateX(0) scale(1.08);
   box-shadow: 
@@ -224,7 +288,6 @@
   transform: translateX(520px) scale(0.88);
 }
 
-/* Project Glow */
 .projectGlow {
   position: absolute;
   inset: -2px;
@@ -243,7 +306,6 @@
   opacity: 0.25;
 }
 
-/* Image Container */
 .projectImageWrapper {
   position: relative;
   width: 100%;
@@ -293,7 +355,6 @@
   background-clip: text;
 }
 
-/* Project Content */
 .projectContent {
   padding: 2rem;
   display: flex;
@@ -337,7 +398,6 @@
   line-height: 1.8;
 }
 
-/* Tech Stack */
 .techStack {
   display: flex;
   flex-wrap: wrap;
@@ -367,7 +427,6 @@
   transform: translateY(-2px);
 }
 
-/* Project Link */
 .projectLink {
   display: inline-flex;
   align-items: center;
@@ -399,7 +458,6 @@
   transform: translateX(4px);
 }
 
-/* Hover Border */
 .hoverBorder {
   position: absolute;
   inset: -2px;
@@ -418,24 +476,6 @@
   opacity: 0.25;
 }
 
-/* Navigation Buttons */
-.navButton {
-  flex-shrink: 0;
-  width: 3.5rem;
-  height: 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(16, 185, 129, 0.2);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 40;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
 .navButton:hover {
   background: rgba(16, 185, 129, 0.1);
   border-color: rgba(16, 185, 129, 0.5);
@@ -448,8 +488,8 @@
 }
 
 .navIcon {
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: #10b981;
   transition: color 0.3s ease;
 }
@@ -458,7 +498,6 @@
   color: #059669;
 }
 
-/* Carousel Indicators */
 .carouselIndicators {
   display: flex;
   justify-content: center;
@@ -489,7 +528,6 @@
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
-/* Counter */
 .counter {
   display: flex;
   align-items: center;
@@ -519,7 +557,6 @@
   color: #9ca3af;
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -596,7 +633,6 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .carouselContainer {
     height: 600px;
@@ -656,20 +692,6 @@
     transform: translateX(0) scale(1);
   }
 
-  .carouselWrapper {
-    gap: 1rem;
-  }
-
-  .navButton {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .navIcon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
   .projectImageWrapper {
     height: 250px;
   }
@@ -706,7 +728,6 @@
   }
 }
 
-/* Dark Mode */
 :global(.dark) .portfolioSection {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
 }

@@ -50,10 +50,10 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("VlfQ5crpMvc7pSMMm");
 
     try {
-      await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+      await emailjs.send("service_ofdex6p", "template_o7455tn", {
         from_name: formData.name,
         from_email: formData.email,
         subject: formData.subject,

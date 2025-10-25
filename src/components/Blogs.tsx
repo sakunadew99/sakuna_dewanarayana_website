@@ -41,11 +41,11 @@ export default function Blogs() {
       link: "https://medium.com/@sakuna.dewanarayana/git-a-to-z-team-workflow-documentation-4d7ed5cbd993",
     },
     {
-      image: "/images/blog1.jpeg",
-      title: "blogs title here",
+      image: "/images/blog5.jpg",
+      title: "The Complete Beginner’s Guide to SQL Commands",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus sapiente quod blanditiis officiis neque architecto voluptatum totam ratione nulla itaque facere iusto perspiciatis, accusantium vel qui consequuntur eius. Tempora, facere?",
-      link: "#",
+        "If data is the new oil, then SQL (Structured Query Language) is the engine, the refinery, and the entire transportation network combined.",
+      link: "https://medium.com/@sakuna.dewanarayana/the-complete-beginners-guide-to-sql-commands-f5752ff9ac1a",
     },
   ];
 

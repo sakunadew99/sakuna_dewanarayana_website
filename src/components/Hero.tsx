@@ -46,10 +46,10 @@ export default function Hero() {
             <div className={styles.profileGlow}></div>
             <div className={styles.profileImageWrapper}>
               <Image
-                src="/images/profile3.jpg"
+                src="/images/profile4.png"
                 alt="Sakuna Dewanarayana"
                 fill
-                sizes="(max-width: 768px) 224px, 288px"
+                sizes="(max-width: 768px) "
                 className={styles.profileImage}
                 priority
               />
@@ -82,7 +82,15 @@ export default function Hero() {
                 2000,
                 "Full Stack Developer",
                 2000,
-                "UI/UX Enthusiast",
+                "Machine Learning",
+                2000,
+                "Data Scientist",
+                2000,
+                "Data Engineer",
+                2000,
+                "Data Analyzer",
+                2000,
+                "Artificial Intelligent",
                 2000,
               ]}
               wrapper="span"
@@ -94,8 +102,7 @@ export default function Hero() {
 
           {/* Short Bio */}
           <p className={styles.bio}>
-            Crafting elegant solutions with clean code and modern design.
-            Passionate about creating seamless digital experiences.
+            Building innovative web experiences through creative problem-solving and cutting-edge technologies. Transforming ideas into intuitive, high-performance digital solutions.
           </p>
 
           {/* CTA Buttons */}

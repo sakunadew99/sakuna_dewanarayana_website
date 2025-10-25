@@ -59,13 +59,13 @@ export default function About() {
           {/* Content Section */}
           <div className={`${styles.contentWrapper} ${inView ? styles.visible : ""}`}>
             <div className={styles.introSection}>
-              <div className={styles.badgeContainer}>
-                <span className={styles.badge}>Full Stack Developer</span>
-                <span className={styles.badge}>Backend Developer</span>
-              </div>
+              
               <h3 className={styles.contentTitle}>
-                Hi, I&apos;m <span className={styles.gradientText}>Sakuna Dewanarayana</span>
+                <span className={styles.gradientText}>Sakuna Dewanarayana</span>
               </h3>
+               <p className={styles.degree}>
+                BSc (Hons) Computer Science specialized in Artificial Intelligence
+              </p>
 
               <p className={styles.description}>
                 I&apos;m a passionate full-stack developer who thrives on building seamless web
@@ -116,7 +116,7 @@ export default function About() {
 
             {/* Download CV Button */}
             <a
-              href="https://drive.google.com/file/d/1lMvbS9ErbIGS7I1yOoL0aMdKfTtVXZlz/view?usp=sharing"
+              href="https://drive.google.com/file/d/1O10SlIyxRLjeKmqjitNIVsJNOgxK19Fr/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.downloadButton}

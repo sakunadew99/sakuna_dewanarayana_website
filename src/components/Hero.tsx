@@ -128,7 +128,7 @@ export default function Hero() {
             <a href="mailto:your@email.com" className={styles.socialLink}>
               <Mail className={styles.socialIcon} />
             </a>
-            <a href="/resume.pdf" download className={styles.socialLink}>
+            <a href="/SAKUNA_CV.pdf" download className={styles.socialLink}>
               <Download className={styles.socialIcon} />
             </a>
           </div>

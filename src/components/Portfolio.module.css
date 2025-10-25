@@ -1,11 +1,14 @@
 /* ============================================
-   CHANGE 1: Fixed Navigation Button Z-Index
+   CHANGE 1: Fixed Navigation Button Z-Index and Alignment
    - Moved buttons outside the carousel flow
    - Prevented buttons from covering content
+   - Aligned buttons to center of carousel
    ============================================ */
 
+/* Base shared style for both buttons */
 .navButton {
-  flex-shrink: 0;
+  position: absolute;
+  top: 40%; /* move upward; try 40% or 50% for adjustment */
   width: 3rem;
   height: 3rem;
   display: flex;
@@ -17,9 +20,18 @@
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 50; /* CHANGED: Increased from 40 to 50 */
+  z-index: 50;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  position: relative; /* CHANGED: Added to ensure proper stacking */
+}
+
+/* Move the previous button to the left */
+.carouselWrapper button:first-of-type {
+  left: -1rem; /* adjust horizontally; can be -2rem or -3rem */
+}
+
+/* Move the next button to the right */
+.carouselWrapper button:last-of-type {
+  right: -1rem;
 }
 
 /* ============================================
@@ -68,6 +80,7 @@
   z-index: 10; /* CHANGED: Much lower than navButton */
   opacity: 0.5;
   filter: blur(1px);
+  
 }
 
 .rightCard {
@@ -75,6 +88,7 @@
   z-index: 10; /* CHANGED: Much lower than navButton */
   opacity: 0.5;
   filter: blur(1px);
+  
 }
 
 /* ============================================
@@ -87,6 +101,7 @@
     width: 2.5rem; /* CHANGED: Slightly larger than before */
     height: 2.5rem;
     z-index: 100; /* CHANGED: Much higher z-index on mobile */
+   
   }
 
   .navIcon {
@@ -104,6 +119,7 @@
   .navButton {
     width: 2.25rem;
     height: 2.25rem;
+    
   }
 
   .navIcon {
